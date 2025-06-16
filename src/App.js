@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { useEffect, useRef } from 'react';
-
-
+import emailjs from '@emailjs/browser';
 function SplashCursor({
   SIM_RESOLUTION = 128,
   DYE_RESOLUTION = 1440,
@@ -1206,10 +1205,6 @@ function SplashCursor({
     </div>
   );
 }
-
-
-
-
 function Navbar() {
   return (
     <nav className="navbar">
@@ -1225,7 +1220,6 @@ function Navbar() {
   );
 }
 
-
 function Home() {
   return (
     <section id="home" className="home-section">
@@ -1237,7 +1231,7 @@ function Home() {
 function About() {
   return (
     <section id="about">
-      ## About Zelion Cricket
+      <h2>About Zelion Cricket</h2>
       <p>We craft premium cricket balls with unmatched quality and performance.</p>
     </section>
   );
@@ -1246,7 +1240,7 @@ function About() {
 function Products() {
   return (
     <section id="products">
-      ## Our Cricket Products
+      <h2>Our Cricket Products</h2>
       <p>Explore our top-notch cricket balls loved by professionals.</p>
     </section>
   );
@@ -1255,17 +1249,93 @@ function Products() {
 function Testimonials() {
   return (
     <section id="testimonials">
-      ## What Players Say
+      <h2>What Players Say</h2>
       <p>"Zelion balls changed the game for me!" - Pro Cricketer</p>
     </section>
   );
 }
 
-function Contact() {
+function GallerySection() {
+  return (
+    <section id="Gallery-section" className="gallery-section">
+      <img src="/images/img2.webp" alt="zelion" className="image" />
+      <a href="https://zelioncricket.com" target="_blank" rel="noopener noreferrer">
+        <button className="gallery-button">Visit More</button>
+      </a>
+    </section>
+  );
+}
+function Contactsection() {
   return (
     <section id="contact">
-      ## Contact Us
-      <p>Email us at: contact@zelioncricket.com</p>
+      <h2>Contact Us</h2>
+      <p>Email us at: <a href="mailto:contact@zelioncricket.com">contact@zelioncricket.com</a></p>
+      <a
+        href="https://wa.me/91XXXXXXXXXX?text=Hi%20I%20am%20interested%20in%20your%20cricket%20products!"
+        className="whatsapp-button"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Chat with us on WhatsApp
+      </a>
+    </section>
+  );
+}
+
+
+function Offers() {
+  const form = useRef();
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setSuccess(false);
+    setError(false);
+
+    emailjs
+      .sendForm(
+        "service_ro9exyi",
+        "template_078mhpp",
+        form.current,
+        "VPILpH4Rh_n5v5mXY"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setSuccess(true);
+          form.current.reset();
+        },
+        (error) => {
+          console.error(error.text);
+          setError(true);
+        }
+      );
+  };
+
+  return (
+    <section id="offers" className="form-container">
+      <h2>Subscribe for Offers</h2>
+      <form ref={form} onSubmit={sendEmail}>
+        <input
+          type="email"
+          name="user_email"
+          placeholder="your@email.com"
+          required
+        />
+        <button type="submit">Submit</button>
+      </form>
+      {success && <p className="success">Email sent successfully!</p>}
+      {error && <p className="error">Failed to send email.</p>}
+
+      <a
+        href="https://wa.me/91XXXXXXXXXX?text=Hi%20I%20want%20to%20know%20more%20about%20your%20offers!"
+        className="whatsapp-button"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Chat on WhatsApp
+      </a>
     </section>
   );
 }
@@ -1279,9 +1349,10 @@ function App() {
       <About />
       <Products />
       <Testimonials />
-      <Contact />
+      <GallerySection />
+      <Contactsection />
+      <Offers />
     </div>
   );
 }
-
 export default App;

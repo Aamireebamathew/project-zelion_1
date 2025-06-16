@@ -24,13 +24,22 @@ body {
 }
 
 .home-logo {
-  width: 300px;
+  width: 450px;
   transition: transform 0.3s ease;
   margin-top: 50px;
     z-index: 900;
 }
 
+@media (max-width: 768px)
+{
+  .home-logo {
+  width: 280px;
+  transition: transform 0.3s ease;
+  margin-top: 50px;
+    z-index: 900;
+}
 
+}
 /* Sections styling */
 section {
   height: 100vh;
@@ -157,4 +166,274 @@ section p {
 
 .tilt-on-hover:hover {
   transform: perspective(600px) rotateY(8deg) rotateX(4deg) scale(1.05);
+}
+
+.gallery-section{
+  height: 130vh;
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  background-color: #000;
+  background-repeat:no-repeat;
+  z-index:900;
+  scroll-behavior:  smooth;
+}
+
+.gallery-section img {
+
+z-index:900;
+width: 90%;
+
+
+}
+.gallery-button {
+z-index: 900;
+margin-top: 10px;
+padding: 10px 30px;
+background-color: #fff;
+color:#000 ;
+border-radius: 30px;
+cursor: pointer;
+font-size: 20px;
+}
+.gallery-button :hover{
+  background-color: #edff21;
+  color: #2684ff;
+}
+/* Reset default spacing */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Shrink outer container space */
+section#offers {
+  padding: 0;
+  margin: 0;
+}
+.whatsapp-button {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 20px;
+  background-color: #25d366;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 40px;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe5d;
+}
+
+.success {
+  color: green;
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.form-container {
+  padding: 20px;
+  text-align: center;
+}
+
+input[type="email"] {
+  padding: 10px;
+  margin: 10px 0;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+/* Small Devices: Mobiles */
+@media (max-width: 480px) {
+  .gallery-section {
+    flex-direction: column;
+    height: auto;
+    padding: 20px 10px;
+    text-align: center;
+  }
+
+  .gallery-section img {
+    width: 100%;
+  }
+
+  .gallery-button {
+    font-size: 16px;
+    padding: 8px 20px;
+    margin-top: 15px;
+  }
+
+  section#contact,
+  section#offers {
+    padding: 40px 20px;
+  }
+
+  .whatsapp-button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  input[type="email"] {
+    width: 100%;
+  }
+}
+
+/* Medium Devices: Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .gallery-section {
+    flex-direction: column;
+    height: auto;
+    padding: 30px 20px;
+  }
+
+  .gallery-section img {
+    width: 100%;
+  }
+
+  .gallery-button {
+    font-size: 18px;
+    padding: 10px 24px;
+  }
+
+  section#contact,
+  section#offers {
+    padding: 60px 30px;
+  }
+
+  input[type="email"] {
+    width: 90%;
+  }
+}
+
+/* Large Devices: Laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gallery-section {
+    padding: 40px 40px;
+  }
+
+  .gallery-section img {
+    width: 85%;
+  }
+
+  .gallery-button {
+    font-size: 20px;
+    padding: 10px 30px;
+  }
+
+  section#contact,
+  section#offers {
+    padding: 80px 50px;
+  }
+
+  input[type="email"] {
+    width: 300px;
+  }
+}
+
+/* Small Devices: Mobiles */
+@media (max-width: 480px) {
+  .home-logo {
+    width: 200px;
+    margin-top: 30px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .navbar div {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a {
+    margin: 10px 0;
+    font-size: 14px;
+  }
+
+  section h2 {
+    font-size: 1.5rem;
+  }
+
+  section p {
+    font-size: 0.9rem;
+  }
+
+  .gallery-button {
+    font-size: 16px;
+    padding: 8px 20px;
+  }
+}
+
+/* Medium Devices: Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .home-logo {
+    width: 280px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .navbar div {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar a {
+    margin: 10px 0;
+  }
+
+  section h2 {
+    font-size: 2rem;
+  }
+
+  section p {
+    font-size: 1rem;
+  }
+}
+
+/* Large Devices: Laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .home-logo {
+    width: 350px;
+  }
+
+  .navbar {
+    padding: 20px 40px;
+  }
+
+  section h2 {
+    font-size: 2.2rem;
+  }
+
+  section p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Extra Large Devices: Desktops */
+@media (min-width: 1025px) {
+  .home-logo {
+    width: 450px;
+  }
+
+  section h2 {
+    font-size: 2.5rem;
+  }
+
+  section p {
+    font-size: 1.2rem;
+  }
 }
