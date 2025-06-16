@@ -1208,7 +1208,7 @@ function SplashCursor({
 function Navbar() {
   return (
     <nav className="navbar">
-      <img src="/images/logo3.png" alt="Zelion Logo" />
+      <img src="/images/logo3.png" alt="Zelion Logo" className="logo-spin" />
       <div>
         <a href="#home">Home</a>
         <a href="#about">About</a>
@@ -1223,37 +1223,78 @@ function Navbar() {
 function Home() {
   return (
     <section id="home" className="home-section">
-      <img src="/images/testproject.png" alt="Zelion" className="home-logo tilt-on-hover" />
+      <img
+        src="/images/testproject.png"
+        alt="Zelion"
+        className="home-logo tilted-earth-rotate"
+      />
     </section>
   );
 }
 
 function About() {
   return (
-    <section id="about">
-      <h2>About Zelion Cricket</h2>
-      <p>We craft premium cricket balls with unmatched quality and performance.</p>
+    <section id="about" className="styled-section about-section">
+      <h2>About <span className="highlight">Zelion Cricket</span></h2>
+      <p>
+        🏏 We craft <strong>premium cricket balls</strong> designed for peak performance, durability,
+        and precision. Every ball is built with passion and precision to meet the
+        demands of serious players.
+      </p>
     </section>
   );
 }
 
 function Products() {
   return (
-    <section id="products">
-      <h2>Our Cricket Products</h2>
-      <p>Explore our top-notch cricket balls loved by professionals.</p>
+    <section id="products" className="styled-section products-section">
+      <h2>Our <span className="highlight">Cricket Products</span></h2>
+      <p>
+        🛍️ Explore our collection of <strong>top-tier cricket balls</strong> loved by professionals
+        and clubs around the world. Quality tested. Game approved.
+      </p>
     </section>
   );
 }
 
 function Testimonials() {
+  const testimonials = [
+    {
+      quote: "Zelion balls changed the game for me!",
+      author: "🏏 – Pro Cricketer"
+    },
+    {
+      quote: "Unmatched quality. Great for tournaments.",
+      author: "💬 – Club Captain"
+    },
+    {
+      quote: "Love the durability and swing. Highly recommend.",
+      author: "🌟 – Fast Bowler"
+    }
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="testimonials">
+    <section id="testimonials" className="testimonial-section">
       <h2>What Players Say</h2>
-      <p>"Zelion balls changed the game for me!" - Pro Cricketer</p>
+      <div className="testimonial-card">
+        <p className="testimonial-quote">“{testimonials[index].quote}”</p>
+        <p className="testimonial-author">{testimonials[index].author}</p>
+      </div>
     </section>
   );
 }
+
+
+
 
 function GallerySection() {
   return (
@@ -1266,12 +1307,38 @@ function GallerySection() {
   );
 }
 function Contactsection() {
+  const email = "contact@zelioncricket.com";
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(email);
+    alert("Email address copied to clipboard!");
+  };
+
   return (
-    <section id="contact">
+    <section id="contact" className="contact-section">
       <h2>Contact Us</h2>
-      <p>Email us at: <a href="mailto:contact@zelioncricket.com">contact@zelioncricket.com</a></p>
+
+      {/* Leave a Message */}
+      <form className="contact-form">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+      {/* Contact Info */}
+      <div className="contact-info">
+        <p><strong>📍 Our Location:</strong> 123 Cricket Street, Sport City, India</p>
+        <p><strong>📞 Call Us:</strong> +91 98765 43210</p>
+        <p>
+          <strong>📧 Email:</strong> {email}{" "}
+          <button onClick={copyToClipboard} className="copy-button">Copy</button>
+        </p>
+      </div>
+
+      {/* WhatsApp */}
       <a
-        href="https://wa.me/91XXXXXXXXXX?text=Hi%20I%20am%20interested%20in%20your%20cricket%20products!"
+        href="https://wa.me/919876543210?text=Hi%20I%20am%20interested%20in%20your%20cricket%20products!"
         className="whatsapp-button"
         target="_blank"
         rel="noopener noreferrer"
